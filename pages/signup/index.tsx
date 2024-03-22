@@ -9,12 +9,13 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link";
 
 const Signup = () => {
-  const [userData, setUserData] = useState({
+  const initialUserData = {
     name: "",
     email: "",
     password: "",
     r_password: "",
-  });
+  };
+  const [userData, setUserData] = useState(initialUserData);
 
   const handleChange = (fieldName: string, value: any) => {
     setUserData({
@@ -37,6 +38,7 @@ const Signup = () => {
         const { email, password } = userData;
         await createUserWithEmailAndPassword(auth, email, password);
         toast.success("User created successfully!");
+        setUserData(initialUserData);
       } catch (error: any) {
         console.error("Error signing up:", error.message);
         toast.error(error.message);
