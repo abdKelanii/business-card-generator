@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { Navbar } from "flowbite-react";
 
 const Header = () => {
   return (
@@ -10,16 +9,16 @@ const Header = () => {
           <h1 className="text-black">Business Card Generator</h1>
         </div>
         <div className="flex justify-between items-center gap-x-4">
-          <div>
+          <Link href={"./signup"}>
             <button className="py-3 px-6 border text-darkBlue hover:text-white border-lightBlue rounded-sm hover:bg-darkBlue">
               Signup
             </button>
-          </div>
-          <div>
+          </Link>
+          <Link href={"./login"}>
             <button className="bg-lightBlue text-white py-3 px-6 rounded-sm hover:bg-darkBlue ">
               Login
             </button>
-          </div>
+          </Link>
         </div>
       </div>
     </div>
