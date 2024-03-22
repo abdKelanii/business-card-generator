@@ -3,7 +3,7 @@ import Link from "next/link";
 const LandingPage = () => {
   return (
     <div>
-      <div className="bg-gray-50/90 py-12 lg:py-24 px-36 ">
+      <div className="bg-gray-50/90 py-12 lg:py-24 md:px-36 ">
         <div className="container px-4 md:px-6">
           <div className="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_700px]">
             <div className="space-y-4">
@@ -38,7 +38,7 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      <section className="grid items-start w-full gap-12 py-28 lg:py-24 px-36 bg-slate-100">
+      <section className="grid items-start w-full gap-12 py-28 lg:py-24 md:px-36 bg-slate-100">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
@@ -79,7 +79,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <section className="bg-gray-900 py-12 lg:py-24 px-36">
+      <section className="bg-gray-900 py-12 lg:py-24 md:px-36">
         <div className="container px-4 md:px-6">
           <div className="grid gap-4 md:gap-8">
             <div className="flex items-start gap-4">
