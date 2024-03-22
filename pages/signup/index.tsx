@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Head from "next/head";
 import { useState } from "react";
-import { auth } from "../lib/firebase";
+import { auth } from "../../lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link";
 
