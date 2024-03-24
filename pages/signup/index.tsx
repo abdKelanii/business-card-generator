@@ -15,6 +15,7 @@ const Signup = () => {
     password: "",
     r_password: "",
   };
+  
   const [userData, setUserData] = useState(initialUserData);
 
   const handleChange = (fieldName: string, value: any) => {
