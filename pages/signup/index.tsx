@@ -7,15 +7,18 @@ import { useState } from "react";
 import { auth } from "../../lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Signup = () => {
+  const router = useRouter();
+
   const initialUserData = {
     name: "",
     email: "",
     password: "",
     r_password: "",
   };
-  
+
   const [userData, setUserData] = useState(initialUserData);
 
   const handleChange = (fieldName: string, value: any) => {
@@ -36,10 +39,14 @@ const Signup = () => {
       toast.error("Passwords do not match");
     } else {
       try {
-        const { email, password } = userData;
-        await createUserWithEmailAndPassword(auth, email, password);
+        const { user } = await createUserWithEmailAndPassword(
+          auth,
+          userData.email,
+          userData.password
+        );
         toast.success("User created successfully!");
         setUserData(initialUserData);
+        router.push(`/dashboard/${user.uid}`);
       } catch (error: any) {
         console.error("Error signing up:", error.message);
         toast.error(error.message);
@@ -104,7 +111,7 @@ const Signup = () => {
 
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
-            <Link className="underline" href="#">
+            <Link className="underline" href="/login">
               Login
             </Link>
           </div>

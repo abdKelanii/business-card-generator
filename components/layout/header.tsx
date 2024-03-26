@@ -12,10 +12,10 @@ const Header = () => {
         Business Card Generator
       </Link>
       <div className="ml-auto flex gap-2">
-        <Link href={"./signup"}>
+        <Link href={"./login"}>
           <Button variant="outline">Sign in</Button>
         </Link>
-        <Link href={"./login"}>
+        <Link href={"./signup"}>
           <Button>Sign Up</Button>
         </Link>
       </div>
