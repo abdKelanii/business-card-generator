@@ -3,13 +3,15 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/router";
 import { auth } from "@/lib/firebase";
 import { toast } from "sonner";
-import { getAuth, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { useAuthStore } from "@/stores/authStore";
 
 const Header = () => {
   const router = useRouter();
   const isAuthPage =
-    router.asPath.startsWith("/login") || router.asPath.startsWith("/signup");
+    router.asPath.startsWith("/login") ||
+    router.asPath.startsWith("/signup") ||
+    router.asPath.startsWith("/");
   const signout = useAuthStore((state) => state.signOut);
 
   const handleLogout = async () => {
