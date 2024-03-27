@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { auth } from "../../lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useAuthStore } from "@/stores/authStore";
 
 const Login = () => {
   const router = useRouter();
@@ -15,6 +16,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const signIn = useAuthStore((state) => state.signIn);
 
   const handleLogin = async () => {
     try {
@@ -24,7 +26,8 @@ const Login = () => {
         password
       );
       toast.success("Logged in successfully!");
-      router.push(`/dashboard/${userCredential.user.uid}`);
+      router.push(`/dashboard`);
+      signIn(userCredential.user.uid);
     } catch (error: any) {
       setError(error.message);
     }

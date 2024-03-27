@@ -8,6 +8,7 @@ import { auth } from "../../lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useAuthStore } from "@/stores/authStore";
 
 const Signup = () => {
   const router = useRouter();
@@ -20,6 +21,7 @@ const Signup = () => {
   };
 
   const [userData, setUserData] = useState(initialUserData);
+  const signIn = useAuthStore((state) => state.signIn);
 
   const handleChange = (fieldName: string, value: any) => {
     setUserData({
@@ -46,7 +48,8 @@ const Signup = () => {
         );
         toast.success("User created successfully!");
         setUserData(initialUserData);
-        router.push(`/dashboard/${user.uid}`);
+        router.push(`/dashboard`);
+        signIn(user.uid);
       } catch (error: any) {
         console.error("Error signing up:", error.message);
         toast.error(error.message);
