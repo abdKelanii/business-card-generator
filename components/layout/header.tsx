@@ -11,7 +11,7 @@ const Header = () => {
   const isAuthPage =
     router.asPath.startsWith("/login") ||
     router.asPath.startsWith("/signup") ||
-    router.asPath.startsWith("/");
+    (router.asPath.startsWith("/") && !router.asPath.startsWith("/dashboard"));
   const signout = useAuthStore((state) => state.signOut);
 
   const handleLogout = async () => {
