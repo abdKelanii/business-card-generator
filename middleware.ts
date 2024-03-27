@@ -14,13 +14,13 @@ export function middleware(request: NextRequest) {
       };
 
   if (!isAuthenticated && pathname.startsWith("/dashboard")) {
-    const response = NextResponse.redirect(new URL(`/`, request.url));
+    const response = NextResponse.redirect(new URL(`/login`, request.url));
     return response;
   }
 
   if (
-    (isAuthenticated && pathname.startsWith("/login")) ||
-    pathname.startsWith("/signup")
+    isAuthenticated &&
+    (pathname.startsWith("/login") || pathname.startsWith("/signup"))
   ) {
     const response = NextResponse.redirect(new URL(`/dashboard`, request.url));
     return response;
