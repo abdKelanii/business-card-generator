@@ -27,24 +27,27 @@ const Header = () => {
   };
 
   return (
-    <header className="flex items-center h-16 px-4 w-full md:px-36 drop-shadow-md border-b ">
-      <Link className="mr-6" href="#">
-        Business Card Generator
-      </Link>
-      {isAuthPage ? (
-        <div className="ml-auto flex gap-2">
-          <Link href={"./login"}>
-            <Button variant="outline">Sign in</Button>
-          </Link>
-          <Link href={"./signup"}>
-            <Button>Sign Up</Button>
-          </Link>
-        </div>
-      ) : (
-        <div className="ml-auto flex gap-2">
-          <Button onClick={handleLogout}>Logout</Button>
-        </div>
-      )}
+    <header className=" bg-white fixed px-4 w-full md:px-36 drop-shadow-md border-b">
+      <div className="flex items-center  h-20 ">
+        {" "}
+        <Link className="mr-6" href="#">
+          Business Card Generator
+        </Link>
+        {isAuthPage ? (
+          <div className="ml-auto flex gap-2">
+            <Link href={"./login"}>
+              <Button variant="outline">Sign in</Button>
+            </Link>
+            <Link href={"./signup"}>
+              <Button>Sign Up</Button>
+            </Link>
+          </div>
+        ) : (
+          <div className="ml-auto flex gap-2">
+            <Button onClick={handleLogout}>Logout</Button>
+          </div>
+        )}
+      </div>
     </header>
   );
 };
