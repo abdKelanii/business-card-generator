@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDQYOUFFxMIt87cWSkxJUSL0HuiNdV75tA",
-  authDomain: "business-card-2df02.firebaseapp.com",
-  projectId: "business-card-2df02",
-  storageBucket: "business-card-2df02.appspot.com",
-  messagingSenderId: "43790365096",
-  appId: "1:43790365096:web:4d515f36cb279a629a6d9d",
-  measurementId: "G-FMM18HN1F1",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDAR_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);

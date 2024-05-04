@@ -1,8 +1,17 @@
+import { IconUserCircle, IconBriefcase, IconSocial } from "@tabler/icons-react";
+
 import React from "react";
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Sidebar = () => {
+  const router = useRouter();
+
+  const isPersnal = router.asPath.endsWith("/personal");
+  const isBusiness = router.asPath.endsWith("/business");
+  const isSocial = router.asPath.endsWith("/social-media");
+
   return (
     <div className="bg-gray-100 h-full dark:bg-gray-800 p-6 md:p-8 lg:p-10 w-64 border-r border-gray-200 dark:border-gray-700 fixed">
       <nav className="space-y-4 ">
@@ -16,24 +25,32 @@ const Sidebar = () => {
             <p className="text-gray-500 dark:text-gray-400">@johndoe</p>
           </div>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-4 pt-5">
           <Link
-            className="flex items-center gap-3 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+            className={`flex items-center gap-3 text-gray-500 hover:text-gray-900  ${
+              isPersnal && "text-gray-900"
+            }`}
             href="/dashboard/personal"
           >
-            <span>Personal Information</span>
+            <IconUserCircle stroke={1.5} />
+            <span>Personal Info</span>
           </Link>
           <Link
-            className="flex items-center gap-3 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+           className={`flex items-center gap-3 text-gray-500 hover:text-gray-900  ${
+            isBusiness && "text-gray-900"
+          }`}
             href="/dashboard/business"
           >
-            <span>Business Information</span>
+            <IconBriefcase stroke={1.5} />
+            <span>Business Infor</span>
           </Link>
           <Link
-            className="flex items-center gap-3 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-            href="/dashboard/socila-media"
+            className={`flex items-center gap-3 text-gray-500 hover:text-gray-900  ${
+              isSocial && "text-gray-900"
+            }`}
+            href="/dashboard/social-media"
           >
-            {/* Icon Place Holde */}
+            <IconSocial stroke={1.5} />
             <span>Social Media Links</span>
           </Link>
         </div>
