@@ -5,6 +5,7 @@ import { auth } from "@/lib/firebase";
 import { toast } from "sonner";
 import { signOut } from "firebase/auth";
 import { useAuthStore } from "@/stores/authStore";
+import PageWrapper from "../animation/page-wrapper";
 
 const Header = () => {
   const router = useRouter();
@@ -13,6 +14,8 @@ const Header = () => {
     router.asPath.startsWith("/signup") ||
     (router.asPath.startsWith("/") && !router.asPath.startsWith("/dashboard"));
   const signout = useAuthStore((state) => state.signOut);
+
+  const isDashboard = router.asPath.startsWith("/dashboard");
 
   const handleLogout = async () => {
     signOut(auth)
@@ -27,8 +30,12 @@ const Header = () => {
   };
 
   return (
-    <header className=" bg-white fixed px-4 w-full md:px-36 drop-shadow-md border-b">
-      <div className="flex items-center  h-20 ">
+    <header
+      className={`bg-white fixed px-4 md:px-36 drop-shadow-md border-b ${
+        isDashboard ? "fixed right-0 w-[calc(100%-160px)]" : "w-full"
+      }`}
+    >
+      <div className="flex items-center h-20">
         {" "}
         <Link className="mr-6" href="#">
           Business Card Generator

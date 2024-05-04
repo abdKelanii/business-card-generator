@@ -9,6 +9,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useAuthStore } from "@/stores/authStore";
+import PageWrapper from "@/components/animation/page-wrapper";
 
 const Signup = () => {
   const router = useRouter();
@@ -58,11 +59,11 @@ const Signup = () => {
   };
 
   return (
-    <>
+    <PageWrapper>
       <Head>
         <title>Create a new account</title>
       </Head>
-      <div className="mx-auto max-w-sm space-y-6 h-screen mt-28">
+      <div className="mx-auto max-w-sm space-y-6 h-screen pt-32">
         <div className="space-y-2 text-center">
           <h1 className="text-3xl font-bold">Sign Up</h1>
           <p className="text-gray-500 dark:text-gray-400">
@@ -120,7 +121,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-    </>
+    </PageWrapper>
   );
 };
 

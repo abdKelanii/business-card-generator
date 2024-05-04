@@ -9,8 +9,11 @@ const UserDashboard = () => {
       <Head>
         <title>Dashboard</title>
       </Head>
-
-      <Dashboard />
+      <PageWrapper>
+        <div className="w-[calc(100%-160px)]  mt-32 float-end">
+          <Dashboard />
+        </div>
+      </PageWrapper>
     </>
   );
 };

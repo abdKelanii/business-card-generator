@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { auth } from "../../lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useAuthStore } from "@/stores/authStore";
+import PageWrapper from "@/components/animation/page-wrapper";
 
 const Login = () => {
   const router = useRouter();
@@ -34,11 +35,12 @@ const Login = () => {
   };
 
   return (
-    <>
+    <PageWrapper>
       <Head>
         <title>Login to your account</title>
       </Head>
-      <div className="mx-auto max-w-sm space-y-6 h-screen mt-28">
+
+      <div className="mx-auto max-w-sm space-y-6 h-screen pt-32">
         <div className="space-y-2 text-center">
           <h1 className="text-3xl font-bold">Login</h1>
           <p className="text-gray-500 dark:text-gray-400">
@@ -84,7 +86,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </>
+    </PageWrapper>
   );
 };
 

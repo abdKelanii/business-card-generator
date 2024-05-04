@@ -5,50 +5,10 @@ import { Input } from "@/components/ui/input";
 
 export function Dashboard() {
   return (
-    <div
-      key="1"
-      className="flex min-h-screen w-[calc(100%-250px)] float-end mt-20"
-    >
-      <div className="flex-1 p-6 md:p-8 lg:p-10">
-        <div className="flex flex-col gap-8">
+    <div className="">
+      <div className="flex-1">
+        <div className="flex flex-col ">
           Main Page
-          <Card>
-            <CardHeader>
-              <CardTitle>Personal Information</CardTitle>
-            </CardHeader>
-            <CardContent className="grid gap-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input defaultValue="John Doe" id="name" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="username">Username</Label>
-                  <Input defaultValue="johndoe" id="username" />
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    defaultValue="john@example.com"
-                    id="email"
-                    type="email"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone</Label>
-                  <Input defaultValue="+1 (555) 555-5555" id="phone" />
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="address">Address</Label>
-                  <Input defaultValue="123 Main St, Anytown USA" id="address" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
           <Card>
             <CardHeader>
               <CardTitle>Business Information</CardTitle>
