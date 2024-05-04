@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import PageWrapper from "@/components/animation/page-wrapper";
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 import Head from "next/head";
+import { Button } from "@chakra-ui/react";
 
 const Business = () => {
   return (
@@ -37,6 +38,9 @@ const Business = () => {
                   <Label htmlFor="industry">Industry</Label>
                   <Input defaultValue="Technology" id="industry" />
                 </div>
+              </div>
+              <div className="flex justify-end">
+                <Button className="mt-5 w-24">Save</Button>
               </div>
             </CardContent>
           </Card>

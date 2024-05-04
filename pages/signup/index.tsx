@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Head from "next/head";
 import { useState } from "react";
 import { auth } from "../../lib/firebase";
+import { getDatabase, ref, set } from "firebase/database";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -47,6 +48,11 @@ const Signup = () => {
           userData.email,
           userData.password
         );
+        const database = getDatabase();
+        await set(ref(database, "users/" + user.uid), {
+          name: userData.name,
+          email: userData.email,
+        });
         toast.success("User created successfully!");
         setUserData(initialUserData);
         router.push(`/dashboard`);

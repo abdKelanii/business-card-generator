@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import PageWrapper from "@/components/animation/page-wrapper";
 import Head from "next/head";
+import { Button } from "@chakra-ui/react";
 
 const Personal = () => {
+  const [personalData, setPersonalData] = useState();
+
   return (
     <>
       <Head>
@@ -48,6 +51,9 @@ const Personal = () => {
                   <Label htmlFor="address">Address</Label>
                   <Input defaultValue="123 Main St, Anytown USA" id="address" />
                 </div>
+              </div>
+              <div className="flex justify-end">
+                <Button className="mt-5 w-24">Save</Button>
               </div>
             </CardContent>
           </Card>
