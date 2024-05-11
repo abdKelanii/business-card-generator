@@ -72,13 +72,15 @@ const Personal = () => {
     }
     if (!personalData.username.trim()) {
       errorMessage += "Please enter a username.\n";
+    } else if (/\s/.test(personalData.username.trim())) {
+      errorMessage += "Username cannot contain spaces.\n";
     }
-    if (!personalData.email.trim()) {
+    if (!personalData.email) {
       errorMessage += "Please enter your email address.\n";
     } else if (!validateEmail(personalData.email)) {
       errorMessage += "Please enter a valid email address.\n";
     }
-    if (!personalData.phone.trim()) {
+    if (!personalData.phone) {
       errorMessage += "Please enter your phone number.\n";
     } else if (!/^\+?[1-9]\d{1,14}$/.test(personalData.phone)) {
       errorMessage += "Please enter a valid phone number.\n";
@@ -92,16 +94,20 @@ const Personal = () => {
     if (errorMessage) {
       toast.error(errorMessage);
     } else {
-      try {
-        const db = getDatabase();
-        await set(ref(db, `users/${userId}/personal`), {
-          ...personalData,
-        });
-        toast.success("Personal information saved successfully!");
-        console.log("Data saved successfully!");
-      } catch (error: any) {
-        console.error("Error saving data:", error);
-        toast.error(error.message);
+      if (/\s/.test(personalData.username.trim())) {
+        toast.error("Username cannot contain spaces.");
+      } else {
+        try {
+          const db = getDatabase();
+          await set(ref(db, `users/${userId}/personal`), {
+            ...personalData,
+          });
+          toast.success("Personal information saved successfully!");
+          console.log("Data saved successfully!");
+        } catch (error: any) {
+          console.error("Error saving data:", error);
+          toast.error(error.message);
+        }
       }
     }
   };

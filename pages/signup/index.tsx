@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import Head from "next/head";
 import { useState } from "react";
 import { auth } from "../../lib/firebase";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, get } from "firebase/database";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -42,15 +42,32 @@ const Signup = () => {
       toast.error("Please write your password");
     } else if (userData.password !== userData.r_password) {
       toast.error("Passwords do not match");
+    } else if (!userData.username) {
+      toast.error("Please enter a username.\n");
+    } else if (/\s/.test(userData.username)) {
+      toast.error("Username cannot contain spaces.\n");
     } else {
       try {
+        const database = getDatabase();
+        const userRef = ref(database, "users");
+        const snapshot = await get(userRef);
+        const users = snapshot.val();
+
+        const usernameExists = Object.values(users).some(
+          (user: any) => user.personal.username === userData.username
+        );
+
+        if (usernameExists) {
+          toast.error("Username is already taken. Please choose another.");
+          return;
+        }
+
         const { user } = await createUserWithEmailAndPassword(
           auth,
           userData.email,
           userData.password
         );
-        const database = getDatabase();
-        await set(ref(database, "users/" + userData.username), {
+        await set(ref(database, "users/" + user.uid + "/personal"), {
           name: userData.name,
           email: userData.email,
           username: userData.username,
