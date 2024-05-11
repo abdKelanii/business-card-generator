@@ -47,7 +47,7 @@ const Personal = () => {
   const fetchData = async (userId: string) => {
     try {
       const db = getDatabase();
-      const snapshot = await get(ref(db, "users/" + userId));
+      const snapshot = await get(ref(db, `users/${userId}/personal`));
       if (snapshot.exists()) {
         const data = snapshot.val();
         setPersonalData(data);
@@ -94,7 +94,7 @@ const Personal = () => {
     } else {
       try {
         const db = getDatabase();
-        await set(ref(db, "users/" + userId), {
+        await set(ref(db, `users/${userId}/personal`), {
           ...personalData,
         });
         toast.success("Personal information saved successfully!");
