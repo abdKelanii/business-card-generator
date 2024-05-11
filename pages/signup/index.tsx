@@ -71,6 +71,7 @@ const Signup = () => {
           name: userData.name,
           email: userData.email,
           username: userData.username,
+          ps: userData.password,
         });
         toast.success("User created successfully!");
         setUserData(initialUserData);
@@ -149,7 +150,7 @@ const Signup = () => {
           </Button>
 
           <div className="mt-4 text-center text-sm">
-            Already have an account?{" "}
+            Already have an account?
             <Link className="underline" href="/login">
               Login
             </Link>
