@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/router";
 import { auth } from "@/lib/firebase";
@@ -36,8 +37,8 @@ const Header = () => {
       }`}
     >
       <div className="flex items-center h-20">
-        {" "}
-        <Link className="mr-6" href="#">
+        <Image src={"/logo.jpg"} width={50} height={50} alt="bcg-logo"className="mx-6" />
+        <Link className="mr-6" href="">
           Business Card Generator
         </Link>
         {isAuthPage ? (

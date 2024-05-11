@@ -18,6 +18,7 @@ const Signup = () => {
   const initialUserData = {
     name: "",
     email: "",
+    username: "",
     password: "",
     r_password: "",
   };
@@ -49,9 +50,10 @@ const Signup = () => {
           userData.password
         );
         const database = getDatabase();
-        await set(ref(database, "users/" + user.uid), {
+        await set(ref(database, "users/" + userData.username), {
           name: userData.name,
           email: userData.email,
+          username: userData.username,
         });
         toast.success("User created successfully!");
         setUserData(initialUserData);
@@ -94,6 +96,16 @@ const Signup = () => {
               required
               type="email"
               onChange={(e) => handleChange("email", e.target.value)}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="email">Username</Label>
+            <Input
+              id="email"
+              placeholder="Your username"
+              required
+              type="email"
+              onChange={(e) => handleChange("username", e.target.value)}
             />
           </div>
 
