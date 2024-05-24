@@ -19,24 +19,28 @@ const Links = ({ user }: ViewProps) => {
         <Link
           className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
           href={user.links.facebook}
+          target="_blank "
         >
           <IconBrandFacebook className="h-6 w-6" />
         </Link>
         <Link
           className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
           href={user.links.instagram}
+          target="_blank "
         >
           <IconBrandInstagram className="h-6 w-6" />
         </Link>
         <Link
           className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
           href={user.links.linkedIn}
+          target="_blank "
         >
           <IconBrandLinkedin className="h-6 w-6" />
         </Link>
         <Link
           className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
           href={user.links.x}
+          target="_blank "
         >
           <IconBrandX className="h-6 w-6" />
         </Link>

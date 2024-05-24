@@ -9,7 +9,7 @@ interface ViewProps {
 const Personal = ({ user }: ViewProps) => {
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold">Business</h3>
+      <h3 className="text-lg font-semibold">Professional Details</h3>
       <div className="space-y-2">
         <div className="flex items-center space-x-2">
           <IconBuildingEstate className="h-5 w-5 text-gray-500 dark:text-gray-400" />
