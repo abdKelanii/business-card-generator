@@ -8,10 +8,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   const dashboard = router.asPath.startsWith("/dashboard");
+  const viewPage = router.asPath.startsWith(
+    `/${router.query.username as string}`
+  );
 
   return (
     <div className="">
-      <Header />
+      {!viewPage && <Header />}
 
       {dashboard && <Sidebar />}
       <main>{children}</main>
