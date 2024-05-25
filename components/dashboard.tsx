@@ -1,5 +1,5 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useState, ChangeEvent, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { get, ref as dbRef, set } from "firebase/database";
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@chakra-ui/react";
 import { db, storage } from "@/lib/firebase";
 import { toast } from "sonner";
+import QRCode from "qrcode";
 
 interface Profile {
   qrLink: string;
@@ -25,7 +26,7 @@ const Dashboard = () => {
     about: "",
   });
   const [photo, setPhoto] = useState<File | null>(null);
-  const [photoURL, setPhotoURL] = useState<any>(null);
+  const [photoURL, setPhotoURL] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
 
   const auth = getAuth();
@@ -42,18 +43,46 @@ const Dashboard = () => {
     }
   };
 
+  const generateQrCode = async (userId: string) => {
+    try {
+      const qrCodeData = "https://itisme.vercel.app/abdkelanii";
+      const qrCodeURL = await QRCode.toDataURL(qrCodeData);
+      
+      const qrCodeBlob = await (await fetch(qrCodeURL)).blob();
+      const qrCodeRef = ref(storage, `users/${userId}/qrCode.png`);
+      await uploadBytes(qrCodeRef, qrCodeBlob);
+      const qrCodeDownloadURL = await getDownloadURL(qrCodeRef);
+
+      return qrCodeDownloadURL;
+    } catch (error) {
+      console.error("Error generating QR code:", error);
+      return "";
+    }
+  };
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUserId(user.uid);
-        fetchProfileData(user.uid);
+        await fetchProfileData(user.uid);
+
+        if (!profile.qrLink) {
+          const qrLink = await generateQrCode(user.uid);
+          if (qrLink) {
+            setProfile((prevProfile) => ({
+              ...prevProfile,
+              qrLink,
+            }));
+            await set(dbRef(db, `users/${user.uid}/profile/qrLink`), qrLink);
+          }
+        }
       }
     });
 
     return () => {
       unsubscribe();
     };
-  }, [auth]);
+  }, [auth, profile.qrLink]);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -117,7 +146,7 @@ const Dashboard = () => {
                   <img
                     alt="QR Code"
                     height={150}
-                    src="/placeholder.svg"
+                    src={profile.qrLink || "/placeholder.svg"}
                     style={{
                       aspectRatio: "150/150",
                       objectFit: "cover",
@@ -141,7 +170,7 @@ const Dashboard = () => {
                     alt="Uploaded Profile Photo"
                     className="rounded-md"
                     height={100}
-                    src={photoURL || profile?.photoLink}
+                    src={photoURL || profile.photoLink || "/placeholder.svg"}
                     style={{
                       aspectRatio: "100/100",
                       objectFit: "cover",

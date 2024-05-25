@@ -1,4 +1,5 @@
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
+import Image from 'next/image'
 import { User } from "@/utils/fetchUser";
 import Personal from "./personal";
 import Links from "./links";
@@ -20,7 +21,7 @@ export function View({ user }: ViewProps) {
         <div className="absolute bottom-0 transform translate-y-1/2">
           <Avatar className="h-28 w-28 bg-white rounded-full border-2 border-black">
             <AvatarImage
-              alt="@shadcn"
+              alt="@prfilePhoto"
               src={user?.profile?.photoLink || "/placeholder-avatar.jpg"}
             />
             <AvatarFallback></AvatarFallback>
@@ -53,6 +54,12 @@ export function View({ user }: ViewProps) {
                 <div>{user.business && <Business user={user} />}</div>
               )}
             </div>
+
+            {
+              <div className="md:col-span-2 my-5 flex justify-center items-center w-full">
+                <Image src={user.profile.qrLink} width={100} height={100} alt="QrCode"></Image>
+              </div>
+            }
             {user?.links && (
               <div className="md:col-span-2 flex justify-center items-center w-full">
                 <Links user={user} />

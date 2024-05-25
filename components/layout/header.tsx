@@ -107,7 +107,7 @@ const Header = () => {
         ) : (
           <div className="ml-auto flex gap-2">
             <Button onClick={handleLogout}>Logout</Button>
-            <Button onClick={() => router.push(`/${personalData?.username}`)}>
+            <Button onClick={() => window.open(`/${personalData?.username}`, '_blank')}>
               View Your Public Page
             </Button>
           </div>
