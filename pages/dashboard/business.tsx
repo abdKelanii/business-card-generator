@@ -119,7 +119,7 @@ const Business = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="industry">Industry</Label>
+                  <Label htmlFor="industry">Location</Label>
                   <Input
                     id="industry"
                     name="industry"
