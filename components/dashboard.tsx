@@ -10,6 +10,7 @@ import { Button } from "@chakra-ui/react";
 import { db, storage } from "@/lib/firebase";
 import { toast } from "sonner";
 import QRCode from "qrcode";
+import { getDatabase } from "firebase/database";
 
 interface Profile {
   qrLink: string;
@@ -28,6 +29,7 @@ const Dashboard = () => {
   const [photo, setPhoto] = useState<File | null>(null);
   const [photoURL, setPhotoURL] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
+  const [username, setUsername] = useState<string>();
 
   const auth = getAuth();
 
@@ -43,11 +45,24 @@ const Dashboard = () => {
     }
   };
 
+  const fetchUsername = async (userId: string) => {
+    try {
+      const db = getDatabase();
+      const snapshot = await get(dbRef(db, `users/${userId}/personal`));
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        setUsername(data.username);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   const generateQrCode = async (userId: string) => {
     try {
-      const qrCodeData = "https://itisme.vercel.app/abdkelanii";
+      const qrCodeData = `https://itisme.vercel.app/${username}`;
       const qrCodeURL = await QRCode.toDataURL(qrCodeData);
-      
+
       const qrCodeBlob = await (await fetch(qrCodeURL)).blob();
       const qrCodeRef = ref(storage, `users/${userId}/qrCode.png`);
       await uploadBytes(qrCodeRef, qrCodeBlob);
@@ -65,6 +80,7 @@ const Dashboard = () => {
       if (user) {
         setUserId(user.uid);
         await fetchProfileData(user.uid);
+        fetchUsername(user.uid);
 
         if (!profile.qrLink) {
           const qrLink = await generateQrCode(user.uid);
