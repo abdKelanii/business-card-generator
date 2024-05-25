@@ -29,7 +29,7 @@ const Dashboard = () => {
   const [photo, setPhoto] = useState<File | null>(null);
   const [photoURL, setPhotoURL] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
-  const [username, setUsername] = useState<string>();
+  const [username, setUsername] = useState<string>("");
 
   const auth = getAuth();
 
@@ -54,11 +54,11 @@ const Dashboard = () => {
         setUsername(data.username);
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching username:", error);
     }
   };
 
-  const generateQrCode = async (userId: string) => {
+  const generateQrCode = async (username: string) => {
     try {
       const qrCodeData = `https://itisme.vercel.app/${username}`;
       const qrCodeURL = await QRCode.toDataURL(qrCodeData);
@@ -80,25 +80,30 @@ const Dashboard = () => {
       if (user) {
         setUserId(user.uid);
         await fetchProfileData(user.uid);
-        fetchUsername(user.uid);
-
-        if (!profile.qrLink) {
-          const qrLink = await generateQrCode(user.uid);
-          if (qrLink) {
-            setProfile((prevProfile) => ({
-              ...prevProfile,
-              qrLink,
-            }));
-            await set(dbRef(db, `users/${user.uid}/profile/qrLink`), qrLink);
-          }
-        }
+        await fetchUsername(user.uid);
       }
     });
 
     return () => {
       unsubscribe();
     };
-  }, [auth, profile.qrLink]);
+  }, [auth]);
+
+  useEffect(() => {
+    const updateQrCode = async () => {
+      if (userId && username && !profile.qrLink) {
+        const qrLink = await generateQrCode(username);
+        if (qrLink) {
+          setProfile((prevProfile) => ({
+            ...prevProfile,
+            qrLink,
+          }));
+          await set(dbRef(db, `users/${userId}/profile/qrLink`), qrLink);
+        }
+      }
+    };
+    updateQrCode();
+  }, [userId, username, profile.qrLink]);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
