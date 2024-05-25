@@ -82,7 +82,7 @@ const Personal = () => {
     }
     if (!personalData.phone) {
       errorMessage += "Please enter your phone number.\n";
-    } else if (!/^\+?[1-9]\d{1,14}$/.test(personalData.phone)) {
+    } else if (!/^(\+?\d{1,15})$/.test(personalData.phone)) {
       errorMessage += "Please enter a valid phone number.\n";
     }
 

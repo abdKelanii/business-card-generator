@@ -22,10 +22,18 @@ interface Personal {
   username: string;
 }
 
+interface Profile {
+  about: string;
+  photoLink: string;
+  qrLink: string;
+  quote: string;
+}
+
 export interface User {
   business: Business;
   links: Links;
   personal: Personal;
+  profile: Profile;
 }
 
 const fetchUsers = async (): Promise<Record<string, User>> => {

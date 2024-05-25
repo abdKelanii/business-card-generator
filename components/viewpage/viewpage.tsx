@@ -4,7 +4,6 @@ import Personal from "./personal";
 import Links from "./links";
 import Business from "./business";
 import PageWrapper from "../animation/page-wrapper";
-import Profile from "./profile";
 
 interface ViewProps {
   user: User;
@@ -12,16 +11,19 @@ interface ViewProps {
 export function View({ user }: ViewProps) {
   return (
     <>
-      <div className="relative bg-gradient-to-r from-blue-800 to-indigo-900 w-full h-48 flex justify-center items-center">
+      <div className="relative bg-gradient-to-r from-slate-300 to-slate-500 w-full h-48 flex justify-center items-center">
         <div>
           <blockquote className="text-2xl font-medium text-center text-white">
-            "The only way to do great work is to love what you do."
+            {user?.profile?.quote}
           </blockquote>
         </div>
         <div className="absolute bottom-0 transform translate-y-1/2">
           <Avatar className="h-28 w-28 bg-white rounded-full border-2 border-black">
-            <AvatarImage alt="@shadcn" src="/placeholder-avatar.jpg" />
-            <AvatarFallback>JP</AvatarFallback>
+            <AvatarImage
+              alt="@shadcn"
+              src={user?.profile?.photoLink || "/placeholder-avatar.jpg"}
+            />
+            <AvatarFallback></AvatarFallback>
           </Avatar>
         </div>
       </div>
@@ -34,15 +36,10 @@ export function View({ user }: ViewProps) {
           </p>
           <div className="flex justify-center mt-5">
             <div className="text-gray-700 dark:text-gray-300 px-5 md:px-0 md:w-2/3">
-              <h3 className="text-lg font-semibold text-center mb-2">About Me</h3>
-              <p className="">
-                Frontend Software Engineer with 2+ experience. My focus is
-                ReactJS, NextJS, and TypeScript. Currently, I'm part of the
-                DaleelStore team, developing a cutting-edge platform to enhance
-                employee benefits in KSA. Additionally, I actively contribute to
-                open-source projects to improve their functionality and
-                performance.
-              </p>
+              <h3 className="text-lg font-semibold text-center mb-2">
+                About Me
+              </h3>
+              <p className="">{user?.profile?.about}</p>
             </div>
           </div>
         </div>
@@ -50,15 +47,13 @@ export function View({ user }: ViewProps) {
           <div className="gap-8 mt-12 border-2 py-10 px-5 md:px-10 w-auto rounded-lg shadow-sm">
             <div className="md:flex justify-around mb-10">
               <div className="mb-5 md:mb-0">
-                <Personal user={user} />
+                {user?.personal && <Personal user={user} />}
               </div>
-              {user.business && (
-                <div>
-                  <Business user={user} />
-                </div>
+              {user?.business && (
+                <div>{user.business && <Business user={user} />}</div>
               )}
             </div>
-            {user.links && (
+            {user?.links && (
               <div className="md:col-span-2 flex justify-center items-center w-full">
                 <Links user={user} />
               </div>
