@@ -11,7 +11,7 @@ interface ViewProps {
 export function View({ user }: ViewProps) {
   return (
     <>
-      <div className="relative bg-gradient-to-r from-slate-300 to-slate-500 w-full h-48 flex justify-center items-center">
+      <div className="relative bg-gradient-to-r from-violet-600 to-indigo-600 w-full h-48 flex justify-center items-center">
         <div>
           <blockquote className="text-2xl font-medium text-center text-white">
             {user?.profile?.quote}
