@@ -4,6 +4,7 @@ import {
   IconBuildingEstate,
   IconBriefcase,
   IconWorld,
+  IconMapPin,
 } from "@tabler/icons-react";
 
 interface ViewProps {
@@ -13,7 +14,7 @@ interface ViewProps {
 const Personal = ({ user }: ViewProps) => {
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold">Professional Details</h3>
+      <h3 className="text-lg font-semibold">Business Details</h3>
       <div className="space-y-2">
         {user.business.company && (
           <div className="flex items-center space-x-2">
@@ -40,9 +41,14 @@ const Personal = ({ user }: ViewProps) => {
           </div>
         )}
       </div>
-      <div className="text-gray-700 dark:text-gray-300">
-        {/* {user.business.bio} */}
-      </div>
+      {user.business.industry && (
+        <div className="flex items-center space-x-2">
+          <IconMapPin className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+          <span className="text-gray-700 dark:text-gray-300">
+            {user.business.industry}
+          </span>
+        </div>
+      )}
     </div>
   );
 };

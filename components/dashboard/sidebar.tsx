@@ -116,7 +116,7 @@ const Sidebar = () => {
           href="/dashboard/business"
         >
           <IconBriefcase stroke={1.5} />
-          <span>Business Infor</span>
+          <span>Business Info</span>
         </Link>
         <Link
           className={`flex items-center gap-3 text-gray-500 hover:text-gray-900  ${
