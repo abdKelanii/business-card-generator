@@ -34,9 +34,9 @@ const ResponsiveSidebar: React.FC<Props> = ({
   return (
     <div>
       <div
-        className={`fixed inset-0 z-30 transition-transform transform ${
+        className={`md:hidden fixed inset-0 z-30 transition-transform transform ${
           showSidbar ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 md:static md:inset-auto md:z-0 md:transition-none bg-gray-100 dark:bg-gray-800 w-64 border-r border-gray-200 dark:border-gray-700 p-6 md:p-8 lg:p-10`}
+        } md:translate-x-0  md:static md:inset-auto md:z-0 md:transition-none bg-gray-100 dark:bg-gray-800 w-64 border-r border-gray-200 dark:border-gray-700 p-6 md:p-8 lg:p-10`}
       >
         <button
           className="flex justify-end w-full md:hidden p-2"
