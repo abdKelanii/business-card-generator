@@ -82,7 +82,7 @@ const Business = () => {
         <title>Business Information</title>
       </Head>
       <PageWrapper>
-        <div className="w-[calc(100%-160px)] float-end mt-32">
+        <div className="w-full md:w-[calc(100%-160px)] float-end mt-32">
           <Card>
             <CardHeader>
               <CardTitle>Business Information</CardTitle>

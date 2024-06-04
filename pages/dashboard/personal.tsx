@@ -120,7 +120,7 @@ const Personal = () => {
         <title>Personal Information</title>
       </Head>
       <PageWrapper>
-        <div className="w-[calc(100%-160px)] float-end mt-32">
+        <div className="w-full md:w-[calc(100%-160px)] float-end mt-32">
           <Card>
             <CardHeader>
               <CardTitle>Personal Information</CardTitle>

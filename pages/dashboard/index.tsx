@@ -10,7 +10,7 @@ const UserDashboard = () => {
         <title>Dashboard</title>
       </Head>
       <PageWrapper>
-        <div className="w-[calc(100%-160px)]  mt-32 float-end">
+        <div className="w-full md:w-[calc(100%-160px)]  mt-32 float-end">
           <Dashboard />
         </div>
       </PageWrapper>

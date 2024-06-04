@@ -8,8 +8,14 @@ import { useAuthStore } from "@/stores/authStore";
 import React, { useState, useEffect } from "react";
 import { getDatabase, ref, get, set } from "firebase/database";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { IconMenu2 } from "@tabler/icons-react";
 
-const Header = () => {
+interface Props {
+  showSidbar: boolean;
+  setShowSidebar: React.Dispatch<any>;
+}
+
+const Header: React.FC<Props> = ({showSidbar, setShowSidebar}) => {
   const router = useRouter();
   const isAuthPage =
     router.asPath.startsWith("/login") ||
@@ -18,6 +24,10 @@ const Header = () => {
   const signout = useAuthStore((state) => state.signOut);
 
   const isDashboard = router.asPath.startsWith("/dashboard");
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidbar);
+  };
 
   const handleLogout = async () => {
     signOut(auth)
@@ -80,18 +90,24 @@ const Header = () => {
   return (
     <header
       className={`bg-white fixed px-4 md:px-36 drop-shadow-md border-b ${
-        isDashboard ? "fixed right-0 w-[calc(100%-160px)]" : "w-full"
+        isDashboard ? "fixed right-0 w-full md:w-[calc(100%-160px)]" : "w-full"
       }`}
     >
       <div className="flex items-center h-20">
-        <Image
-          src={"/logo.jpg"}
-          width={50}
-          height={50}
-          alt="bcg-logo"
-          className="mx-6"
-        />
-        <Link className="mr-6" href="">
+        <div className="hidden md:flex">
+          <Image
+            src={"/logo.jpg"}
+            width={50}
+            height={50}
+            alt="bcg-logo"
+            className="mx-6"
+          />
+        </div>
+
+        <div className="md:hidden" onClick={toggleSidebar}>
+          <IconMenu2 />
+        </div>
+        <Link className="mr-6 hidden md:flex" href="">
           Business Card Generator
         </Link>
 
@@ -107,7 +123,11 @@ const Header = () => {
         ) : (
           <div className="ml-auto flex gap-2">
             <Button onClick={handleLogout}>Logout</Button>
-            <Button onClick={() => window.open(`/${personalData?.username}`, '_blank')}>
+            <Button
+              onClick={() =>
+                window.open(`/${personalData?.username}`, "_blank")
+              }
+            >
               View Your Public Page
             </Button>
           </div>
