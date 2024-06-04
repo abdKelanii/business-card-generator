@@ -7,7 +7,6 @@ const LandingPage = () => {
         <div className="container px-4 md:px-6">
           <div className="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_700px]">
             <div className="space-y-4">
-             
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
                 Create stunning business cards in minutes
               </h1>
@@ -20,7 +19,7 @@ const LandingPage = () => {
               <div className="flex gap-4">
                 <Link
                   className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-                  href="#"
+                  href="/signup"
                 >
                   Get Started
                 </Link>
@@ -52,12 +51,12 @@ const LandingPage = () => {
               </p>
             </div>
           </div>
-          <div className="mx-auto grid max-w-sm items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
+          <div className="mx-auto mt-5 grid max-w-sm items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
             <div className="grid gap-1">
-              <h3 className="text-lg font-bold">Customizable Templates</h3>
+              <h3 className="text-lg font-bold">Customizable</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Choose from a variety of professionally designed templates to
-                find the perfect style for your brand.
+                You can customize all your data and add what you wnat from the
+                dashboard
               </p>
             </div>
             <div className="grid gap-1">
@@ -93,13 +92,14 @@ const LandingPage = () => {
                 width="64"
               />
               <p className="text-gray-100 md:text-xl/relaxed lg:text-base/relaxed dark:text-gray-400">
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat."
+                "I couldn't believe how quick and easy it was to design my
+                business cards! The interface is incredibly user-friendly, and I
+                had my cards customized and ordered in minutes. The quality of
+                the cards is fantastic—crisp, vibrant, and professional. Highly
+                recommend!"
                 <br />
                 <strong className="font-medium not-italic text-gray-100 dark:text-gray-400">
-                  - John Doe
+                  - Omar Alaswadi
                 </strong>
               </p>
             </div>
@@ -116,13 +116,14 @@ const LandingPage = () => {
                 width="64"
               />
               <p className="text-gray-100 md:text-xl/relaxed lg:text-base/relaxed dark:text-gray-400">
-                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo."
+                "This service is a lifesaver! I was able to create my business
+                cards in no time, thanks to the intuitive design tools. The
+                whole process was smooth and straightforward. When the cards
+                arrived, I was amazed by the high-quality print and premium
+                materials. I'll definitely be using this again."
                 <br />
                 <strong className="font-medium not-italic text-gray-100 dark:text-gray-400">
-                  - Jane Smith
+                  - Samer Muhsen
                 </strong>
               </p>
             </div>
@@ -139,13 +140,14 @@ const LandingPage = () => {
                 width="64"
               />
               <p className="text-gray-100 md:text-xl/relaxed lg:text-base/relaxed dark:text-gray-400">
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat."
+                "I'm blown away by how simple and fast it was to create my
+                business cards. The templates are great, and the editor made it
+                easy to customize everything just the way I wanted. The best
+                part? The cards were printed and delivered quickly, and they
+                look absolutely stunning. Excellent quality!"
                 <br />
                 <strong className="font-medium not-italic text-gray-100 dark:text-gray-400">
-                  - John Doe
+                  - Ali Kamel
                 </strong>
               </p>
             </div>
