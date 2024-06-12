@@ -116,7 +116,7 @@ const Signup = () => {
               onChange={(e) => handleChange("email", e.target.value)}
             />
           </div>
-          <div className="space-y-2">
+          <div className="space-y-2">{}
             <Label htmlFor="email">Username</Label>
             <Input
               id="email"

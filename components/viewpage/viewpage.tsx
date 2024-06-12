@@ -19,9 +19,10 @@ export function View({ user }: ViewProps) {
           </blockquote>
         </div>
         <div className="absolute bottom-0 transform translate-y-1/2">
-          <Avatar className="h-28 w-28 bg-white rounded-full border-2 border-black">
+          <Avatar className="h-28 w-28 bg-white rounded-full border-2 border-black ">
             <AvatarImage
               alt="@prfilePhoto"
+              className="object-cover"
               src={user?.profile?.photoLink || "/placeholder-avatar.jpg"}
             />
             <AvatarFallback></AvatarFallback>
